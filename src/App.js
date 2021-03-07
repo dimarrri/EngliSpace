@@ -3,7 +3,7 @@ import { getPreparationDataWord } from "./dataWord/data";
 import './App.scss';
 
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.check_answer_to_current_question = this.check_answer_to_current_question.bind(this)
@@ -13,56 +13,71 @@ class App extends React.Component {
     this.KEY_MODE_RU = "RUS"
     this.KEY_MODE_EN = "ENG"
     this.KEY_MODE_WORKOUT = "WORKOUT"
-    this.KEY_MODE_LEARN = "LEARN"
     this.state = {
       data: getPreparationDataWord(),
       currentElement: 0,
       inputValue: "",
       currentMode: "ENG",
+      hiddenPicture: true,
       stub: require("./image/stub.png").default,
     }
   }
-
+  /**
+  * @param { Object: event | String: event.dataset.keyMode } event 
+  * @returns new state installs modes translate words. rus => eng and eng => rus ...  
+  */
   handlerSwitchMode(event) {
-    this.setState((prevState) => {
-      return { ...prevState, currentMode: event.target.dataset.translateLanguage }
-    })
+    if (event.target.dataset.translateLanguage === this.KEY_MODE_WORKOUT) {
+      this.setState((prevState) => ({ ...prevState, hiddenPicture: !prevState.hiddenPicture }))
+    } else this.setState((prevState) => ({ ...prevState, currentMode: event.target.dataset.translateLanguage }))
   }
-
+  /**
+  * @param { Object: event | String: event.input.value } event 
+  * @returns changes state, a field value from state.  
+  */
   handlerValueChangeControl(event) {
-    this.setState({ ...this.state, inputValue: event.target.value.replace(/\s/g, "") })
+    return this.setState({ ...this.state, inputValue: event.target.value.toLowerCase().replace(/\s/g, "") })
   }
 
+  /**
+  * @param { Object: event.method } event process the response depending on which mode is set.
+  * @returns call function to verification response user
+  */
+  handlerCheckAnswerToQuestion(event) {
+    event.preventDefault()
+    if (this.state.currentMode === this.KEY_MODE_RU) return this.check_answer_to_current_question(this.KEY_MODE_RU)
+    if (this.state.currentMode === this.KEY_MODE_EN) return this.check_answer_to_current_question(this.KEY_MODE_EN)
+  }
+  /**
+  * @param { String: eng, rus } mode is receive string key, for definition verification method.
+  * @returns new state with to changed currentElement and clean field input a value.
+  */
   check_answer_to_current_question(mode) {
-    let { data, inputValue, currentElement } = this.state
+    const { data, inputValue, currentElement } = this.state
+    const getNextIndexElement = (current, length) => current !== (length - 1) ? ++current : 0
     switch (mode) {
       case (this.KEY_MODE_EN):
         if (data[currentElement].wordTranslation.includes(inputValue))
-          this.setState((prevState) => ({ ...prevState, currentElement: (currentElement === data.length ? 0 : ++prevState.currentElement), inputValue: "" }))
-      case (this.KEY_MODE_RU): {
+          this.setState((prevState) => ({ ...prevState, 
+            currentElement: getNextIndexElement(currentElement, data.length), 
+            inputValue: "" }))
+      case (this.KEY_MODE_RU):
         if (data[currentElement].wordEnglish === inputValue)
-          this.setState((prevState) => ({ ...prevState, currentElement: (currentElement === data.length ? 0 : ++prevState.currentElement), inputValue: "" }))
-      }
+          this.setState((prevState) => ({ ...prevState, 
+            currentElement: getNextIndexElement(currentElement, data.length), 
+            inputValue: "" }))
       default: { return false }
     }
   }
-
-  // process the response depending on which mode is set.
-  handlerCheckAnswerToQuestion(event) {
-    event.preventDefault()
-    if (this.state.currentMode === this.KEY_MODE_RU) this.check_answer_to_current_question(this.KEY_MODE_RU)
-    if (this.state.currentMode === this.KEY_MODE_EN) this.check_answer_to_current_question(this.KEY_MODE_EN)
-  }
-
   render() {
-    const { data, currentElement, inputValue, currentMode, stub } = this.state
+    const { data, currentElement, inputValue, currentMode, hiddenPicture, stub } = this.state
     return (
       <div className="main-container">
         <article className="auxiliary-wrapper">
 
           <menu className="menu-settings-for-trainer">
-            {[this.KEY_MODE_RU, this.KEY_MODE_EN, this.KEY_MODE_LEARN, this.KEY_MODE_WORKOUT].map((value) => (
-              <button key={value} data-translate-language={value} onClick={this.handlerSwitchMode}>d</button>
+            {[this.KEY_MODE_RU, this.KEY_MODE_EN, this.KEY_MODE_WORKOUT].map((value) => (
+              <button key={value} data-translate-language={value} onClick={this.handlerSwitchMode}>{value}</button>
             ))}
           </menu>
 
@@ -76,7 +91,7 @@ class App extends React.Component {
               <button type="submit">+</button>
             </form>
             <div className="wrapper-for-image">
-              {currentMode == this.KEY_MODE_WORKOUT ? <img src={stub} alt="stub" /> : <img src={this.state.data[currentElement].wordImage} alt="image-word" />}
+              {hiddenPicture ? <img src={this.state.data[currentElement].wordImage} alt="image-word" /> : <img src={stub} alt="stub" />}
             </div>
           </div>
 
@@ -86,5 +101,3 @@ class App extends React.Component {
   }
 }
 
-
-export default App;
