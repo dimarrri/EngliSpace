@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a14ad10e.chunk.css",
+    "main.js": "/static/js/main.d6b50050.chunk.js",
+    "main.js.map": "/static/js/main.d6b50050.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.90833ab2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.90833ab2.js.map",
+    "static/js/2.b63cfba9.chunk.js": "/static/js/2.b63cfba9.chunk.js",
+    "static/js/2.b63cfba9.chunk.js.map": "/static/js/2.b63cfba9.chunk.js.map",
+    "static/js/3.ede7153b.chunk.js": "/static/js/3.ede7153b.chunk.js",
+    "static/js/3.ede7153b.chunk.js.map": "/static/js/3.ede7153b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.a14ad10e.chunk.css.map": "/static/css/main.a14ad10e.chunk.css.map",
+    "static/js/2.b63cfba9.chunk.js.LICENSE.txt": "/static/js/2.b63cfba9.chunk.js.LICENSE.txt",
+    "static/media/abide.png": "/static/media/abide.6cd437e4.png",
+    "static/media/ahead.png": "/static/media/ahead.afe6d7f2.png",
+    "static/media/behind.png": "/static/media/behind.adbf2275.png",
+    "static/media/borderline.png": "/static/media/borderline.2d7a531c.png",
+    "static/media/bread.png": "/static/media/bread.39796925.png",
+    "static/media/bring.png": "/static/media/bring.e8e053d2.png",
+    "static/media/butter.png": "/static/media/butter.6336b047.png",
+    "static/media/edge.png": "/static/media/edge.f449e2dd.png",
+    "static/media/happen.png": "/static/media/happen.ac1001ce.png",
+    "static/media/later.png": "/static/media/later.067b2a36.png",
+    "static/media/some.png": "/static/media/some.efcaaf93.png",
+    "static/media/stub.png": "/static/media/stub.d4ae42f0.png",
+    "static/media/tell.png": "/static/media/tell.2a0800bd.png",
+    "static/media/watch.png": "/static/media/watch.2daaabc0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90833ab2.js",
+    "static/js/2.b63cfba9.chunk.js",
+    "static/css/main.a14ad10e.chunk.css",
+    "static/js/main.d6b50050.chunk.js"
+  ]
+}
