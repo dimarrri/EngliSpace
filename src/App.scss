@@ -5,102 +5,198 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-face {
+  font-family: "JosefinSans-ExtraLight";
+  src: url(./fonts/JosefinSans-ExtraLight/JosefinSans-ExtraLight.ttf) format("truetype"),
+    url(./fonts/JosefinSans-ExtraLight/JosefinSans-ExtraLight.woff) format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JosefinSans-Light";
+  src: url(./fonts/JosefinSans-Light/JosefinSans-Light.ttf) format("truetype"),
+    url(./fonts/JosefinSans-Light/JosefinSans-Light.woff) format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JosefinSans-Medium";
+  src: url(./fonts/JosefinSans-Medium/JosefinSans-Medium.ttf) format("truetype"),
+    url(./fonts/JosefinSans-Medium/JosefinSans-Medium.woff) format("woff");
+  font-weight: 500;
+  font-style: normal;
 }
 
+$JosefinSansExtraLight: "JosefinSans-ExtraLight", "Arial", sans-serif;
+$JosefinSansMedium: "JosefinSans-Medium", "Arial", sans-serif;
+$JosefinSansLight: "JosefinSans-Light", "Arial", sans-serif;
+$colorRelativeBackground: #3f3f3f;
+$colorBackgroundModeMenu: #d0d0d0;
+$colorContent: #f0f0f0;
+$colorFonts: #292929;
+$accentColor: #8397fd;
+
 .main-container {
-  display: grid;
-  position: relative;
   width: 100%;
   height: 100vh;
-  grid-auto-flow: column;
-  .auxiliary-wrapper {
+  position: relative;
+  background: $colorRelativeBackground;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+  .wrapper-content-part {
+    width: 750px;
+    height: 400px;
+    position: relative;
     display: grid;
-    grid-template-rows: repeat(3, 7%) 1fr;
-    grid-auto-flow: row;
-    width: 600px;
-    height: 450px;
-    justify-self: center;
-    align-self: center;
-    .menu-settings-for-trainer {
-      height: auto;
-      background: rgb(70, 70, 70);
-      z-index: 1;
-      grid-row: 1/2;
+    grid-template-columns: auto 1fr;
+    grid-auto-flow: column;
+    .menu-install-mode-trainer {
       grid-column: 1;
+      //
+      // animation: .6s show-menu-mode 2s ease both;
+      width: 70px;
+      height: auto;
+      background: $colorBackgroundModeMenu;
+      overflow: hidden;
+      padding: 0;
       margin: 0;
       border-radius: 20px;
-      margin-bottom: -30px;
-      grid-auto-flow: column;
-      // align-self: center;
-      // align-content: center;
+      margin-right: -20px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      display: grid;
+      grid-template-rows: repeat(3, 13%) 1fr;
       button {
+        width: 100%;
         border: none;
         outline: none;
-        border-radius: 5px;
-        background: #cfcfcf;
-        margin: 5px;
+        padding: 0;
+        border-top-left-radius: 20px;
+        display: grid;
+        cursor: pointer;
+        img {
+          padding: 12px;
+        }
+      }
+      button[data-translate-language="ENG"] {
+        margin-bottom: -20px;
+        background: #faff7f;
+        grid-row: 1;
+        z-index: 1;
+      }
+      button[data-translate-language="RUS"] {
+        margin-bottom: -20px;
+        background: #ff7f7f;
+        grid-row: 2;
+        z-index: 2;
+      }
+      button[data-translate-language="WORKOUT"] {
+        margin-bottom: -20px;
+        background: #adf97f;
+        grid-row: 3;
+        z-index: 3;
+      }
+      .stud-last-element-mode-menu {
+        width: 100%;
+        height: 70px;
+        background: $colorBackgroundModeMenu;
+        border-top-left-radius: 20px;
+        z-index: 4;
       }
     }
     .container-box-word {
-      grid-row: 2/4;
-      z-index: 2;
-      grid-column: 1;
+      z-index: 100;
+      grid-column: 2;
       overflow: hidden;
-      margin: auto;
       align-self: center;
+      box-shadow: 0px 0px 6.48px 2.52px rgba(0, 0, 0, 0.23);
       display: grid;
-      width: 600px;
-      height: 400px;
-      background: #cfcfcf;
+      width: 100%;
+      height: 100%;
+      background: $colorContent;
       border-radius: 20px;
       grid-gap: 5px;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: auto 45%;
       grid-template-rows: 70% auto;
+      .block-loaded-content {
+        display: grid;
+        grid-row: 1/3;
+        grid-column: 1/3;
+        background: $accentColor;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        animation: .6s hidden-block 2s ease both;
+        h1 {
+          font-family: $JosefinSansMedium;
+          font-size: 40px;
+          color: $colorFonts;
+        }
+        p {
+          font-family: $JosefinSansExtraLight;
+          font-size: 24px;
+          color: $colorFonts;
+          letter-spacing: 13px;
+        }
+        .circle-logo {
+          display: grid;
+          justify-self: center;
+          width: 150px;
+          height: 150px;
+          background: $colorContent;
+          border-radius: 10em;
+          justify-content: center;
+          align-content: center;
+          box-shadow: 0px 0px 6.48px 2.52px rgba(0, 0, 0, 0.23);
+          img {
+            image-rendering: optimizeSpeed;
+          }
+        }
+      }
       .wrapper-question-title {
+        display: none;
         display: grid;
         justify-self: center;
         align-self: center;
         grid-auto-flow: row;
+        animation: 1s appearance-smooth 0.6s ease both;
         h1 {
           justify-self: center;
-          font-size: 35px;
+          font-size: 50px;
           margin: 0;
+          font-family: $JosefinSansMedium;
+          text-transform: capitalize;
+          letter-spacing: -2px;
+          color: $colorFonts;
         }
         span {
+          letter-spacing: -2px;
+          font-family: $JosefinSansLight;
           justify-self: center;
-          font-size: 17px;
+          font-size: 25px;
         }
       }
       .container-input-answer {
         display: grid;
-        grid-auto-flow: column;
-        grid-template-columns: 80% 20%;
+        animation: appearance-smooth 0.6s ease both;
         input {
           outline: none;
           border: none;
           width: 90%;
           height: 30px;
-          border-radius: 8px;
+          background: none;
           text-align: center;
-          font-size: 20px;
+          font-size: 26px;
+          border-bottom: 1.5px solid $colorRelativeBackground;
           justify-self: center;
           align-self: center;
+          font-family: $JosefinSansLight;
           &::placeholder {
+            font-family: $JosefinSansExtraLight;
             color: rgb(92, 92, 92);
           }
-        }
-        button {
-          justify-self: center;
-          align-self: center;
-          outline: none;
-          width: 100%;
-          height: 30px;
-          border-radius: 8px;
-          border: none;
-          background: rgb(229, 255, 0);
         }
       }
       .wrapper-for-image {
@@ -110,7 +206,40 @@ code {
         width: 100%;
         height: 100%;
         background-size: 100% 100%;
+        overflow: hidden;
+        align-content: center;
+        animation: appearance-smooth 0.6s ease both;
+        img {
+          width: 100%;
+        }
       }
     }
+  }
+}
+
+@keyframes show-menu-mode {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 70px;
+  }
+}
+@keyframes hidden-block {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes appearance-smooth {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
