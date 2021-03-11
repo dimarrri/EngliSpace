@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/EngliSpace/static/css/main.a14ad10e.chunk.css",
-    "main.js": "/EngliSpace/static/js/main.af79195c.chunk.js",
-    "main.js.map": "/EngliSpace/static/js/main.af79195c.chunk.js.map",
-    "runtime-main.js": "/EngliSpace/static/js/runtime-main.88a32e21.js",
-    "runtime-main.js.map": "/EngliSpace/static/js/runtime-main.88a32e21.js.map",
-    "static/js/2.293f14d0.chunk.js": "/EngliSpace/static/js/2.293f14d0.chunk.js",
-    "static/js/2.293f14d0.chunk.js.map": "/EngliSpace/static/js/2.293f14d0.chunk.js.map",
-    "static/js/3.46de2f1f.chunk.js": "/EngliSpace/static/js/3.46de2f1f.chunk.js",
-    "static/js/3.46de2f1f.chunk.js.map": "/EngliSpace/static/js/3.46de2f1f.chunk.js.map",
+    "main.css": "/EngliSpace/static/css/main.bb1125ec.chunk.css",
+    "main.js": "/EngliSpace/static/js/main.ed4c6d6c.chunk.js",
+    "main.js.map": "/EngliSpace/static/js/main.ed4c6d6c.chunk.js.map",
+    "runtime-main.js": "/EngliSpace/static/js/runtime-main.2de36a5d.js",
+    "runtime-main.js.map": "/EngliSpace/static/js/runtime-main.2de36a5d.js.map",
+    "static/js/2.ac61db4c.chunk.js": "/EngliSpace/static/js/2.ac61db4c.chunk.js",
+    "static/js/2.ac61db4c.chunk.js.map": "/EngliSpace/static/js/2.ac61db4c.chunk.js.map",
+    "static/js/3.53d733cb.chunk.js": "/EngliSpace/static/js/3.53d733cb.chunk.js",
+    "static/js/3.53d733cb.chunk.js.map": "/EngliSpace/static/js/3.53d733cb.chunk.js.map",
     "index.html": "/EngliSpace/index.html",
-    "static/css/main.a14ad10e.chunk.css.map": "/EngliSpace/static/css/main.a14ad10e.chunk.css.map",
-    "static/js/2.293f14d0.chunk.js.LICENSE.txt": "/EngliSpace/static/js/2.293f14d0.chunk.js.LICENSE.txt",
+    "static/css/main.bb1125ec.chunk.css.map": "/EngliSpace/static/css/main.bb1125ec.chunk.css.map",
+    "static/js/2.ac61db4c.chunk.js.LICENSE.txt": "/EngliSpace/static/js/2.ac61db4c.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/EngliSpace/static/media/YanoneKaffeesatz-Medium.87ac7ac4.ttf",
     "static/media/abide.png": "/EngliSpace/static/media/abide.6cd437e4.png",
     "static/media/ahead.png": "/EngliSpace/static/media/ahead.afe6d7f2.png",
     "static/media/behind.png": "/EngliSpace/static/media/behind.adbf2275.png",
@@ -21,16 +22,18 @@
     "static/media/butter.png": "/EngliSpace/static/media/butter.6336b047.png",
     "static/media/edge.png": "/EngliSpace/static/media/edge.f449e2dd.png",
     "static/media/happen.png": "/EngliSpace/static/media/happen.ac1001ce.png",
+    "static/media/ico_language.0938afbb.svg": "/EngliSpace/static/media/ico_language.0938afbb.svg",
+    "static/media/ico_learn.0a28b9cb.svg": "/EngliSpace/static/media/ico_learn.0a28b9cb.svg",
     "static/media/later.png": "/EngliSpace/static/media/later.067b2a36.png",
     "static/media/some.png": "/EngliSpace/static/media/some.efcaaf93.png",
-    "static/media/stub.png": "/EngliSpace/static/media/stub.d4ae42f0.png",
+    "static/media/stub.png": "/EngliSpace/static/media/stub.621d74a4.png",
     "static/media/tell.png": "/EngliSpace/static/media/tell.2a0800bd.png",
     "static/media/watch.png": "/EngliSpace/static/media/watch.2daaabc0.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.88a32e21.js",
-    "static/js/2.293f14d0.chunk.js",
-    "static/css/main.a14ad10e.chunk.css",
-    "static/js/main.af79195c.chunk.js"
+    "static/js/runtime-main.2de36a5d.js",
+    "static/js/2.ac61db4c.chunk.js",
+    "static/css/main.bb1125ec.chunk.css",
+    "static/js/main.ed4c6d6c.chunk.js"
   ]
 }
