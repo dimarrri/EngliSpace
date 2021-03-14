@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { getPreparationDataWord } from "./dataWord/data";
 import { useMediaQuery } from "react-responsive";
 import classNames from 'classnames';
@@ -25,6 +25,7 @@ export default class App extends React.Component {
       currentMode: "ENG",
       hiddenPicture: true,
       loadingContent: true,
+      statusValidate: "success",
       stub: require("./image/stub.png").default,
     }
   }
@@ -58,6 +59,7 @@ export default class App extends React.Component {
     event.preventDefault()
     if (this.state.currentMode === this.KEY_MODE_RU) return this.check_answer_to_current_question(this.KEY_MODE_RU)
     if (this.state.currentMode === this.KEY_MODE_EN) return this.check_answer_to_current_question(this.KEY_MODE_EN)
+    // this.checkAnswerToCurrentQuestion()
   }
   /**
   * @param { String: eng, rus } mode is receive string key, for definition verification method.
@@ -69,49 +71,27 @@ export default class App extends React.Component {
     switch (mode) {
       case (this.KEY_MODE_EN):
         if (data[currentElement].wordTranslation.includes(inputValue))
-          this.setState((prevState) => ({
+          return this.setState((prevState) => ({
             ...prevState,
             currentElement: getNextIndexElement(currentElement, data.length),
-            inputValue: ""
+            statusValidate: "success",
+            inputValue: "",
           }))
+        else return this.setState((prevState) => ({ ...prevState, statusValidate: "error" }))
       case (this.KEY_MODE_RU):
         if (data[currentElement].wordEnglish === inputValue)
-          this.setState((prevState) => ({
+          return this.setState((prevState) => ({
             ...prevState,
             currentElement: getNextIndexElement(currentElement, data.length),
+            statusValidate: "success",
             inputValue: ""
           }))
+        else return this.setState((prevState) => ({ ...prevState, statusValidate: "error" }))
       default: { return false }
     }
   }
-  getStringMatchPercentage(value, answer) {
-    // debugger
-    const arrLetterValue = value.split('')
-    const arrLetterAnswer = answer.split('')
-    const levelRelations = 100 / arrLetterValue.length
-    let result = []
-    for(let i = 0; i < arrLetterValue.length; ++i) {
-      const _ = arrLetterValue[i] === arrLetterAnswer[i] ? (result.push(levelRelations)) : null 
-    }
-    return result.reduce((a, b) => a + b)
-  }
-
-  checkAnswerToCurrentQuestion() {
-    const { data, inputValue, currentElement, currentMode } = this.state
-    switch (currentMode) {
-      case (this.KEY_MODE_EN): {
-        this.getStringMatchPercentage(inputValue, data[currentElement].wordEnglish)
-      }
-      case (this.KEY_MODE_RU): {
-
-      }
-    }
-  }
-
-
   render() {
-
-    console.log(this.getStringMatchPercentage("abide", "adide"))
+    console.log(this.state)
     return (
       <HtmlMarkupApp
         KEY_MODE_EN={this.KEY_MODE_EN}
@@ -124,6 +104,7 @@ export default class App extends React.Component {
         hiddenPicture={this.state.hiddenPicture}
         loadingContent={this.state.loadingContent}
         stub={this.state.stub}
+        statusValidate={this.state.statusValidate}
         handlerSwitchMode={this.handlerSwitchMode}
         handlerCheckAnswerToQuestion={this.handlerCheckAnswerToQuestion}
         handlerValueChangeControl={this.handlerValueChangeControl}
@@ -142,6 +123,7 @@ function HtmlMarkupApp(props) {
     currentMode,
     hiddenPicture,
     loadingContent,
+    statusValidate,
     handlerSwitchMode,
     handlerCheckAnswerToQuestion,
     handlerValueChangeControl,
@@ -149,6 +131,27 @@ function HtmlMarkupApp(props) {
 
   const isHandheldDevice = useMediaQuery({ maxWidth: "730px" })
   const isDesktopDevice = useMediaQuery({ minWidth: "730px", maxWidth: "1900px" })
+  const referenceMode = useRef()
+
+  const handlerScrollBar = ((currentElement) => (event) => {
+    console.dir(referenceMode.current.children[1].style.width)
+    const currentWidth = referenceMode.current.children[currentElement].style.width
+    console.log(currentWidth)
+    const sectorRight = ((referenceMode.current.offsetWidth / 2) - 100)
+    const sectorLeft = ((referenceMode.current.offsetWidth / 2) + 100)
+    if (currentWidth === "") {
+      for(let i = 0; i < referenceMode.current.children.length; ++i) {
+        referenceMode.current.children[i].style.width = "70px"
+      }
+    }
+    // debugger
+    if (referenceMode.current.children[currentElement].style.width !== "20px" ) {
+      if (event.nativeEvent.layerX > sectorLeft) {
+        return referenceMode.current.children[currentElement].style.width = `${Number.parseFloat(referenceMode.current.children[currentElement].style.width) - 2}px`
+      }
+    }
+    else return ++currentElement
+  })(0)
 
   return (
     <div className="main-container">
@@ -168,6 +171,24 @@ function HtmlMarkupApp(props) {
           <div className="stud-last-element-mode-menu"></div>
         </menu>
 
+        <div ref={referenceMode} className="menu-choice-set-word" onMouseMove={handlerScrollBar}>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+          <button type="button"><span>glagole</span></button>
+        </div>
+
         <div className={classNames({
           ["container-box-word"]: true,
           ["container-box-word-handheld"]: isHandheldDevice,
@@ -186,7 +207,8 @@ function HtmlMarkupApp(props) {
                 <span>{currentMode == KEY_MODE_EN ? data[currentElement].wordWrongShape : null}</span>
               </div>
               <form className="container-input-answer" onSubmit={handlerCheckAnswerToQuestion}>
-                <input placeholder="enter word" onChange={handlerValueChangeControl} value={inputValue} />
+                <input placeholder="enter word" data-validate={statusValidate} onChange={handlerValueChangeControl} value={inputValue} />
+                {statusValidate == "error" && <span>incorrect, try again.</span>}
               </form>
               <div className="wrapper-for-image">
                 {hiddenPicture && data[currentElement].wordImage ? <img src={data[currentElement].wordImage} alt="image-word" /> : <img src={stub} alt="stub" />}

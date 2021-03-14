@@ -20,16 +20,15 @@ class CreatorSubObjectData {
 	}
 }
 
-function getSelectionProperty(allDataWords, index) {
+function getSelectionProperty(allDataWords, lengthData) {
 	const result = []
 	const listSelectedWord = []
-	const __generateRandomRound = (numLength) => {
-		const round = Math.floor(Math.random() * numLength)
-		const result = round > numLength ? __generateRandomRound(numLength) : round;
-		return result;
+	const __generateRandomRound = (number) => {
+		const round = Math.floor(Math.random() * number)
+		return round > number ? __generateRandomRound(number) : round;;
 	}
-	while (!(result.length === index)) {
-		const round = __generateRandomRound(allDataWords.length)
+	while (!(result.length === lengthData)) {
+		const round = __generateRandomRound(lengthData)
 		if (listSelectedWord.includes(allDataWords[round].wordEnglish)) continue;
 		else {
 			result.push({ ...allDataWords[round] })
